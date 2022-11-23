@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>userBoard</title>
+</head>
+
+<div id="container" style="width:1800px">
+
+  <div id="header" style="background-color:#33CCCC;">
+    <h1 style="margin-bottom:0;text-align:center">欢迎使用图书管理系统</h1></div>
+
+  <div id="menu" style="background-color:#D0D0D0;height:1000px;width:200px;float:left;">
+    <b></b><br>
+    <ul>
+      图书管理
+      <li><a href="/newBook">上架图书</a>
+      <li><a href="/history">查看历史记录</a> </li>
+    </ul>
+    <ul>
+      个人管理
+      <li><a href="/newUser">创建用户</a></li>
+      <li><a href="/userList">用户列表</a></li>
+      <li><a href="/deleteUser">删除用户</a></li>
+      <li><a href="/userChangePassword">更改密码</a></li>
+      <li><a href="/login">退出系统</a></li>
+    </ul>
+  </div>
+
+  <div id="content" style="background-color:#E0FFFF;height:1000px;width:1600px;float:left;">
+    <p>上架图书</p>
+    <p th:text="${tip}"></p>
+    <form action="/newBook" method="post">
+      <div>
+        <label>
+          书名
+          <input type="text" name="name">
+        </label>
+      </div>
+      <div>
+        <label>
+          价格
+          <input type="number" name="price">
+        </label>
+      </div>
+      <div>
+        <label>
+          数量
+          <input type="number" name="count">
+        </label>
+      </div>
+      <div>
+        <label>
+          作者
+          <input type="text" name="anther">
+        </label>
+      </div>
+      <div>
+        <label>
+          分类
+          <input type="text" name="category">
+        </label>
+      </div>
+      <div>
+        <input type="submit" value="确定">
+      </div>
+    </form>
+
+  </div>
+
+  <div id="footer" style="background-color:#CCFFCC;clear:both;text-align:center;">
+    版权 你不可以动哦</div>
+</div>
+</html>
