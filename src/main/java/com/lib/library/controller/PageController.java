@@ -70,11 +70,11 @@ public class PageController {
 
     @RequestMapping(path = "/bookList",method = RequestMethod.GET)
     public String bookList(Model model, HttpSession session){
-//        User user = (User) session.getAttribute("user");
-        /*if(user == null){
+        User user = (User) session.getAttribute("user");
+        if(user == null){
             model.addAttribute("error","您已退出系统，请重新登陆");
             return "login";
-        }*/
+        }
         PageRequest page = PageRequest.of(0, 10);
         Page<Book> bookList = bookService.getBookList(page);
         model.addAttribute("bookList", bookList);

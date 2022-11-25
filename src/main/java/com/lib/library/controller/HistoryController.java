@@ -33,7 +33,7 @@ public class HistoryController {
         }
         PageRequest o = PageRequest.of(n,10);
         Page<History> historyByBookId = historyService.getHistoryByBookId(id,o);
-        model.addAttribute("historyLists",historyByBookId);
+        model.addAttribute("historyList",historyByBookId);
         return "history";
     }
 
@@ -50,7 +50,7 @@ public class HistoryController {
         }
         PageRequest o = PageRequest.of(n,10);
         Page<History> historyByBookId = historyService.getHistoryByUserId(id,o);
-        model.addAttribute("historyLists",historyByBookId);
+        model.addAttribute("historyList",historyByBookId);
         return "history";
     }
 
@@ -65,7 +65,7 @@ public class HistoryController {
         }
         PageRequest o = PageRequest.of(n,10);
         Page<History> historyByBookId = historyService.getHistoryList(o);
-        model.addAttribute("historyLists",historyByBookId);
+        model.addAttribute("historyList",historyByBookId);
         return "history";
     }
 }

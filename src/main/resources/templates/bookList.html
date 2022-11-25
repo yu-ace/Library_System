@@ -1,104 +1,125 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1" name="viewport">
-  <title>bookList</title>
-  <link href="/css/bootstrap.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>bookList</title>
+    <link href="/css/bootstrap.css" rel="stylesheet">
 
 </head>
 
 <body>
 
 <div class="row text-center" id="header">
-  <h1>欢迎使用图书借阅系统</h1>
+    <h1>欢迎使用图书借阅系统</h1>
 </div>
 
 <div id="container">
-  <div class="row">
-    <div class="col-2">
-      <div id="menu">
-        <b>图书管理</b><br>
-        <div class="list-group">
-          <a class="list-group-item list-group-item-action list-group-item-success" href="/bookList">查看图书列表</a>
-          <a class="list-group-item list-group-item-action list-group-item-success" href="/borrowBook">借取图书</a>
-          <a class="list-group-item list-group-item-action list-group-item-success" href="/returnBook">归还图书</a>
+    <div class="row">
+        <div class="col-2">
+            <div id="menu">
+                <b>图书管理</b><br>
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action list-group-item-info" href="/bookList">查看图书列表</a>
+                    <a class="list-group-item list-group-item-action list-group-item-info" href="/borrowBook">借取图书</a>
+                    <a class="list-group-item list-group-item-action list-group-item-info" href="/returnBook">归还图书</a>
+                </div>
+                <div class="list-group">
+                    <b>个人管理</b>
+                    <a class="list-group-item list-group-item-action list-group-item-info" href="/readerChangePassword">更改密码</a>
+                    <a class="list-group-item list-group-item-action list-group-item-info" href="/login">退出系统</a>
+                </div>
+            </div>
         </div>
-        <ul class="list-group">
-          个人管理
-          <li class="list-group-item"><a href="/readerChangePassword">更改密码</a></li>
-          <li class="list-group-item"><a href="/login">退出系统</a></li>
-        </ul>
-      </div>
+        <div class="col-10">
+            <div id="content">
+                <h2>图书列表</h2>
+
+                <form action="/bookListByAnther" method="post">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="ii" name="name" placeholder="xxx">
+                                <label for="ii">请输入作者:</label>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="i21" name="number" placeholder="xxx">
+                                <label for="i21">请输入页数:</label>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-floating ">
+                                <button type="submit" class="btn btn-outline-success form-control">确定</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <form action="/bookListByCategory" method="post">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="i1" name="category" placeholder="xxx" type="text">
+                                <label for="i1">请输入分类:</label>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="form-floating">
+                                <input class="form-control" id="i2" name="number" placeholder="xxx" type="number">
+                                <label for="i2">请输入页数:</label>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-floating ">
+                                <button class="btn btn-outline-success form-control" type="submit">确定</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">名称</th>
+                        <th scope="col">价格</th>
+                        <th scope="col">数量</th>
+                        <th scope="col">作者</th>
+                        <th scope="col">类型</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="m:${bookList}">
+                        <td th:text="${m.id}"></td>
+                        <td th:text="${m.name}"></td>
+                        <td th:text="${m.price}"></td>
+                        <td th:text="${m.count}"></td>
+                        <td th:text="${m.anther}"></td>
+                        <td th:text="${m.category}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <form action="/bookListPage" method="post">
+                    <div class="mb-3">
+                        <label class="form-label" for="s1">请选择页数</label>
+                        <select class="form-select" id="s1" name="number">
+                            <option value="0">1</option>
+                            <option value="1">2</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <input class="btn btn-primary" type="submit" value="确定">
+                    </div>
+                </form>
+
+            </div>
+        </div>
     </div>
-    <div class="col-10">
-      <div id="content">
-        <h2>图书列表</h2>
-
-        <form action="/bookListByAnther" method="post">
-          <label>
-            请输入作者<input name="name" type="text">
-            请输入页数<input name="number" type="number">
-          </label>
-          <input type="submit" value="确定">
-        </form>
-
-        <form action="/bookListByCategory" method="post">
-          <div class="form-floating mb-3">
-            <input class="form-control" id="i1" name="category" placeholder="xxx" type="text">
-            <label for="i1">请输入分类:</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input class="form-control" id="i2" name="number" placeholder="xxx" type="number">
-            <label for="i2">请输入页数:</label>
-          </div>
-          <input class="btn btn-primary" type="submit" value="确定">
-
-        </form>
-        <table class="table">
-          <thead>
-          <tr>
-            <th>id</th>
-            <th>名称</th>
-            <th>价格</th>
-            <th>数量</th>
-            <th>作者</th>
-            <th>类型</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr th:each="m:${bookList}">
-            <td th:text="${m.id}"></td>
-            <td th:text="${m.name}"></td>
-            <td th:text="${m.price}"></td>
-            <td th:text="${m.count}"></td>
-            <td th:text="${m.anther}"></td>
-            <td th:text="${m.category}"></td>
-          </tr>
-          </tbody>
-        </table>
-
-        <form action="/bookListPage" method="post">
-          <div class="mb-3">
-            <label class="form-label" for="s1">请选择页数</label>
-            <select class="form-select" id="s1" name="number">
-              <option value="0">1</option>
-              <option value="1">2</option>
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <input class="btn btn-primary" type="submit" value="确定">
-          </div>
-        </form>
-
-      </div>
-    </div>
-  </div>
 </div>
-<div class="text-center" id="footer">
-  版权 你不可以动哦
-</div>
+
 <script src="/js/bootstrap.bundle.js"></script>
 </body>
 

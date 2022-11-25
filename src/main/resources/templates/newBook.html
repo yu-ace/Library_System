@@ -2,55 +2,71 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
-  <title>userBoard</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>newBook</title>
+  <link href="/css/bootstrap.css" rel="stylesheet">
 </head>
+<body>
+<div class="row text-center" id="header">
+  <h1>欢迎使用图书管理系统</h1>
+</div>
 
-<div id="container" style="width:1800px">
+<div id="container">
+  <div class="row">
+    <div class="col-2">
+      <div id="menu">
+        <b>图书管理</b><br>
+        <div class="list-group">
+          <a class="list-group-item list-group-item-action list-group-item-info" href="/newBook">上架图书</a>
+          <a class="list-group-item list-group-item-action list-group-item-info" href="/history">查看历史记录</a>
+        </div>
+        <div class="list-group">
+          <b>个人管理</b>
+          <a class="list-group-item list-group-item-action list-group-item-info" href="/newUser">创建用户</a>
+          <a class="list-group-item list-group-item-action list-group-item-info" href="/userList">用户列表</a>
+          <a class="list-group-item list-group-item-action list-group-item-info" href="/deleteUser">删除用户</a>
+          <a class="list-group-item list-group-item-action list-group-item-info" href="/userChangePassword">更改密码</a>
+          <a class="list-group-item list-group-item-action list-group-item-info" href="/login">退出系统</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-10">
+      <div id="content">
+        <h2>上架图书</h2>
+        <p th:text="${tip}"></p>
 
-  <div th:insert="commons::name1"></div>
+        <form action="/newBook" method="post">
+          <div class="row">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="ii" name="name" placeholder="xxx">
+              <label for="ii">书名:</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="number" class="form-control" id="i2" name="price" placeholder="xxx">
+              <label for="i2">价格:</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="number" class="form-control" id="i3" name="count" placeholder="xxx">
+              <label for="i3">数量:</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="i4" name="anther" placeholder="xxx">
+              <label for="i4">作者:</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="i5" name="category" placeholder="xxx">
+              <label for="i5">分类:</label>
+            </div>
+            <div class="form-floating ">
+              <button type="submit" class="btn btn-outline-success form-control">确定</button>
+            </div>
+          </div>
+        </form>
 
-  <div id="content" style="background-color:#E0FFFF;height:1000px;width:1600px;float:left;">
-    <p>上架图书</p>
-    <p th:text="${tip}"></p>
-    <form action="/newBook" method="post">
-      <div>
-        <label>
-          书名
-          <input type="text" name="name">
-        </label>
       </div>
-      <div>
-        <label>
-          价格
-          <input type="number" name="price">
-        </label>
-      </div>
-      <div>
-        <label>
-          数量
-          <input type="number" name="count">
-        </label>
-      </div>
-      <div>
-        <label>
-          作者
-          <input type="text" name="anther">
-        </label>
-      </div>
-      <div>
-        <label>
-          分类
-          <input type="text" name="category">
-        </label>
-      </div>
-      <div>
-        <input type="submit" value="确定">
-      </div>
-    </form>
+    </div>
 
   </div>
-
-  <div id="footer" style="background-color:#CCFFCC;clear:both;text-align:center;">
-    版权 你不可以动哦</div>
 </div>
+</body>
 </html>

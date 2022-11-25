@@ -56,7 +56,7 @@ public class BookController {
         }
         PageRequest o = PageRequest.of(n,10);
         Page<Book> bookList = bookService.getBookListByCategory(category,o);
-        model.addAttribute("bookLists",bookList);
+        model.addAttribute("bookList",bookList);
         return "bookList";
     }
 
@@ -72,7 +72,7 @@ public class BookController {
         }
         PageRequest o = PageRequest.of(n,10);
         Page<Book> bookList = bookService.getBookList(o);
-        model.addAttribute("bookLists",bookList);
+        model.addAttribute("bookList",bookList);
         return "bookList";
     }
 

@@ -2,49 +2,73 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
   <title>userList</title>
+  <link href="/css/bootstrap.css" rel="stylesheet">
 </head>
-
-<div id="container" style="width:1800px">
-
-  <div th:insert="commons::name1"></div>
-
-  <div id="content" style="background-color:#E0FFFF;height:1000px;width:1600px;float:left;">
-    <p>用户列表</p>
-
-    <table border="1">
-      <tr>
-        <th>id</th>
-        <th>姓名</th>
-        <th>身份</th>
-      </tr>
-
-      <tr th:each="m:${userList}">
-        <td th:text="${m.id}"></td>
-        <td th:text="${m.name}"></td>
-        <td th:text="${m.identity}"></td>
-      </tr>
-
-      <tr th:each="m:${userLists}">
-        <td th:text="${m.id}"></td>
-        <td th:text="${m.name}"></td>
-        <td th:text="${m.identity}"></td>
-      </tr>
-    </table>
-
-    <form action="/userListPage" method="post">
-      <label>
-        请选择页数<select name="number">
-        <option value="0">1</option>
-        <option value="1">2</option>
-      </select>
-      </label>
-      <input type="submit" value="确定">
-    </form>
-
-  </div>
-  </div>
-  <div id="footer" style="background-color:#CCFFCC;clear:both;text-align:center;">
-    版权 你不可以动哦</div>
+<body>
+<div class="row text-center" id="header">
+  <h1>欢迎使用图书管理系统</h1>
 </div>
+
+<div id="container">
+  <div class="row">
+    <div class="col-2">
+      <div id="menu">
+        <b>图书管理</b><br>
+        <div class="list-group">
+          <a class="list-group-item list-group-item-action list-group-item-info" href="/newBook">上架图书</a>
+          <a class="list-group-item list-group-item-action list-group-item-info" href="/history">查看历史记录</a>
+        </div>
+        <div class="list-group">
+          <b>个人管理</b>
+          <a class="list-group-item list-group-item-action list-group-item-info" href="/newUser">创建用户</a>
+          <a class="list-group-item list-group-item-action list-group-item-info" href="/userList">用户列表</a>
+          <a class="list-group-item list-group-item-action list-group-item-info" href="/deleteUser">删除用户</a>
+          <a class="list-group-item list-group-item-action list-group-item-info" href="/userChangePassword">更改密码</a>
+          <a class="list-group-item list-group-item-action list-group-item-info" href="/login">退出系统</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-10">
+      <div id="content">
+        <h2>用户列表</h2>
+
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">姓名</th>
+            <th scope="col">身份</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="m:${userList}">
+            <td th:text="${m.id}"></td>
+            <td th:text="${m.name}"></td>
+            <td th:text="${m.identity}"></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <form action="/userListPage" method="post">
+          <div class="mb-3">
+            <label class="form-label" for="s1">请选择页数</label>
+            <select class="form-select" id="s1" name="number">
+              <option value="0">1</option>
+              <option value="1">2</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="确定">
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
 </html>
