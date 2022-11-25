@@ -38,7 +38,7 @@ public class BookController {
         }
         PageRequest o = PageRequest.of(n,10);
         Page<Book> bookList = bookService.getBookListByAnther(name,o);
-        model.addAttribute("bookLists",bookList);
+        model.addAttribute("bookList", bookList);
         return "bookList";
     }
 
